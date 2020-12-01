@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> DI Test </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+      <h1> Flask Dependency Injection sandbox </h1>
+      <button onclick=callApiTester()> API tester </button>
+      <p id="testerOutput" style="border: 3px;"></p>
+
+      <script>
+        function callApiTester() {
+          fetch(`http://127.0.0.1:5000/api/tester`)
+            .then(response => 
+              {
+                if (!response.ok)
+                  setOutputText("Bad response, code: "+response.status)
+                else
+                  response.text()
+                    .then(responseText =>
+                      {
+                        console.log(responseText)
+                        setOutputText(responseText);
+                      });
+              })
+            .catch(err => 
+              setOutputText("Error"));
+          }
+
+          function setOutputText(text) {
+            document.getElementById("testerOutput").innerText = text;
+          }
+      </script>
+    </body>
+</html>
