@@ -7,7 +7,8 @@ class DependencyContainer(containers.DeclarativeContainer):
   config = providers.Configuration()
 
   workerObj = providers.ThreadSafeSingleton(
-    WorkerClass
+    WorkerClass,
+    testData = config.testing.dummyData,
   )
   
   wrapperObj = providers.ThreadSafeSingleton(
