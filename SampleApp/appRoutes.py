@@ -1,5 +1,4 @@
 from flask import Flask, render_template, Response
-from WrapperClass import WrapperClass
 
 from DependencyContainer import DependencyContainer
 from dependency_injector.wiring import inject, Provide
@@ -17,6 +16,6 @@ def loadHomePage():
 @app.route("/api/tester")
 @inject
 def testDependencyInjection(wrapperObj = Provide[DependencyContainer.wrapperObj]):
-   response = Response(wrapperObj.runTask())
-   response.headers['Access-Control-Allow-Origin'] = "*"
-   return response
+  response = Response(wrapperObj.runTask())
+  response.headers['Access-Control-Allow-Origin'] = "*"
+  return response
