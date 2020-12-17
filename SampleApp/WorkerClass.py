@@ -6,9 +6,9 @@ class WorkerClass:
     self.testData = testData
     self.value = 0
     self.logger = logger
-    self.logger.error(str(self.value) + ":" + str(self))
+    self.logger.debug(f'Instantiating [{self}]')
 
   def executeTask(self):
     self.value += 1
-    self.logger.error("logging")
+    self.logger.debug(f'[{self}] with value {self.value}')
     return f"{self.testData} {self.value}"

@@ -5,16 +5,10 @@
 
 class WrapperClass:
   # @inject
-  def __init__(self, workerReference):
-              # workerReference = DependencyContainer.workerObj()):
-              # workerReference = Provide[DependencyContainer.workerObj]):
-    # print(f"\tType: {type(workerReference.provider)}\tObj: {workerReference.provider}")
-    # print(f"\tType: {type(workerReference().provider)}\tObj(): {workerReference().provider}")
-
+  def __init__(self, logger, workerReference):
+    self.logger = logger
     self.workerReference = workerReference
-
-  # def __init__(self):
-  #   self.workerReference = WorkerClass()
     
   def runTask(self):
+    self.logger.debug("Executing the worker task")
     return self.workerReference.executeTask()
