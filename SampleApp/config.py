@@ -1,4 +1,4 @@
-import logging
+
 
 config = {
   'app': {
@@ -10,24 +10,22 @@ config = {
     'dummyData': "Test Data"
   },
   'logging': {
-    'filename': "testLogger.log",
+    'dir': "../Logs",
     'format': "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
-    'datefmt': "%m/%d/%Y %I:%M:%S"
-    # 'formatters': {
-    #   'f': {
-    #     'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-    #   }
-    # },
-    # 'handlers': {
-    #   'h': {
-    #     'class': 'logging.StreamHandler',
-    #     'formatter': 'f',
-    #     'level': logging.DEBUG
-    #   }
-    # },
-    # 'root': {
-    #   'handlers': ['h'],
-    #   'level': logging.DEBUG
-    # }
+    'datefmt': "%m/%d/%Y %I:%M:%S",
+    'level': 0,
+    'logSize': (1024*1024), #1MB
+    'backupCopies': 1,
+    'streams': {
+      'testLog': {
+        'file': "testLogger.log",
+        'format': "%(asctime)s %(levelname)-8s %(message)s",
+        'name': "Test-logger"
+      },
+      'default': {
+        'file': "allLogs.log",
+        'name': ""
+      }
+    }
   }
 }
