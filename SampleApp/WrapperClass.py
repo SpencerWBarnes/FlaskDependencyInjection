@@ -1,14 +1,11 @@
-# from WorkerClass import WorkerClass
-# from DependencyContainer import DependencyContainer
-# from dependency_injector.wiring import inject, Provide
-# import dependency_injector
+
 
 class WrapperClass:
-  # @inject
+  # No need to inject since this object is handled in the dependency container
   def __init__(self, logger, workerReference):
     self.logger = logger
     self.workerReference = workerReference
     
-  def runTask(self):
-    self.logger.debug("Executing the worker task")
+  def runTask(self, portNumber):
+    self.logger.debug(f"Executing the worker task on port {portNumber}")
     return self.workerReference.executeTask()

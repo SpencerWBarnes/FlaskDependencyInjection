@@ -15,7 +15,8 @@ def loadHomePage():
 #            https://pypi.org/project/dependency-injector/
 @app.route("/api/tester")
 @inject
-def testDependencyInjection(wrapperObj = Provide[DependencyContainer.wrapperObj]):
-  response = Response(wrapperObj.runTask())
+def testDependencyInjection(wrapperObj = Provide[DependencyContainer.wrapperObj],
+                            portNumber = Provide[DependencyContainer.config.app.port]):
+  response = Response(wrapperObj.runTask(portNumber)) # Example use of an injected singleton
   response.headers['Access-Control-Allow-Origin'] = "*"
   return response

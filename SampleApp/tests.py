@@ -15,12 +15,16 @@ Current solution is to place the tests in the same dir as the tested material.
 class TestTest(unittest.TestCase):
   app = None
 
+  # Called before each test method
   def setUp(self):
     self.app = app.buildApp()
     self.client = self.app.test_client()
 
+  # Called after each test method
   def tearDown(self):
     pass
+
+  # Naming convention is: test_<TestedCode>_<ExecutionCondition>_<ExpectedResult>
 
   def test_WrapperRunTask_StandardCall_200(self):
     # Input
@@ -30,6 +34,7 @@ class TestTest(unittest.TestCase):
     workerMock.executeTask.return_value = expectedData
 
     # Execute
+    # Use a limited namespace to temporarily override a dependency
     with self.app.container.workerObj.override(workerMock):
       result: Response = self.client.get("/api/tester")
 

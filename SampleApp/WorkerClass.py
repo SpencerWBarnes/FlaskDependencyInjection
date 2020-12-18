@@ -1,7 +1,7 @@
-# import logging
+
 
 class WorkerClass:
-
+  # No need to inject since this object is handled in the dependency container
   def __init__(self, logger, testData):
     self.testData = testData
     self.value = 0
